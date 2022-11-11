@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{%block content%}
+
+
+{%if user.is_authenticated%}
+<h1>Delete ...{{post.title}}</h1>
+</br>
+<div class="form-group">
+	<form method="POST">
+	{%csrf_token%}
+	<strong>Estas seguro</strong></br>
+	<button class="btn btn-secondary">Delete</button>
+
+</div>
+
+
+{%endif%}
+
+
+{%endblock%}
