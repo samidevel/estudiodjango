@@ -3,6 +3,7 @@
 
 
 {%if user.is_authenticated%}
+{% if user.id == post.author.id %}
 <h1>Delete ...{{post.title}}</h1>
 </br>
 <div class="form-group">
@@ -13,7 +14,12 @@
 
 </div>
 
+{%else%}
+no puedes estar aqui
+{%endif%}
 
+{%else%}
+no puedes estar aqui
 {%endif%}
 
 

@@ -1,4 +1,4 @@
-<!doctype html>
+  <!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -24,7 +24,7 @@
 
 
    
-
+      {%if cat_menu%}
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
@@ -32,14 +32,21 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-              {%for item in cat_menu%}</a>
-              <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{item}}</a>
-              {%endfor%}
+      {%for item in cat_menu%}</a>
+      <a class="dropdown-item" href="{% url 'category' item|slugify %}">{{item}}</a>
+      {%endfor%} 
 
-       
-         
       </li>
  
+        {%else%}
+   
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'category-list' %}">categories</a>
+      </li>
+      {%endif%}
+
+
+     
 
       {% if user.is_authenticated %}
 
@@ -49,6 +56,33 @@
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'add_category' %}">Add category</a>
+      </li>
+      
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{%url 'edit_profile'%}">Edit Settings </a>
+
+          {% if user.profile.id %}
+
+          <a class="dropdown-item" href="{%url 'edit_profile_page' user.profile.id %}">Edit Profile Page</a>
+           <a class="dropdown-item" href=" {% url 'show_profile_page' user.profile.id%} ">Show Profile Page</a>
+          {%else%}
+
+            
+          <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile</a>  
+
+
+          {% endif %}
+          
+         
+        </div>
+      </li>
+
+       <li class="nav-item">
+       <a class="nav-link" href="{%url 'edit_profile'%}">Edit profile</a>  
       </li>
 
       <li class="nav-item">

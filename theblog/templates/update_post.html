@@ -3,15 +3,20 @@
 
 
 {% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+
 <h1>Update ...</h1>
 </br></br>
 <div class="form-group">
 	<form method="POST">
 	{%csrf_token%}
+	{{form.media}}
 	{{form.as_p}}
 	<button class="btn btn-secondary">Update</button>
 </div>
-
+{%else%}
+	no puedes estar aqui
+{%endif%}
 {%else%}
 no estas autorizado
 {%endif%}
